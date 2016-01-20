@@ -54,3 +54,4 @@ function start() {
 }
 
 start();
+console.log(opts.first_question + "is selected");

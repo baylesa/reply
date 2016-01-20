@@ -1,10 +1,24 @@
 var rl, readline = require('readline');
 
+/** @function get_interface
+ * <p>Starts up the interface for node interactions<p>
+ * @param {object} Readline object for standard input 
+ * @param {object} Readline object for standard output
+ * @returns Readline object
+ */
 var get_interface = function(stdin, stdout) {
   if (!rl) rl = readline.createInterface(stdin, stdout);
   else stdin.resume(); // interface exists
   return rl;
 }
+
+/** @function confirm
+ * 
+ * <p>Handles a confirm message asking the user to inout yes or no</p>
+ * @param {string} message from reply
+ * @param {object} a callback function tht 
+ * @returns {boolean} if "yes" then true otherwise false
+ */
 
 var confirm = exports.confirm = function(message, callback) {
 
@@ -16,6 +30,7 @@ var confirm = exports.confirm = function(message, callback) {
     }
   }
 
+  
   get(question, function(err, answer) {
     if (err) return callback(err);
     callback(null, answer.reply === true || answer.reply == 'yes');
@@ -23,8 +38,16 @@ var confirm = exports.confirm = function(message, callback) {
 
 };
 
-var get = exports.get = function(options, callback) {
 
+ /** @function get
+  * 
+ * <p>Handles </p>
+ * @param{object} a JSON object of questions for the user
+ * @param {object} a callback function once the user inputs an answer
+ * @returns readline
+ */
+var get = exports.get = function(options, callback) {
+    console.log("in get");
   if (!callback) return; // no point in continuing
 
   if (typeof options != 'object')
@@ -35,11 +58,13 @@ var get = exports.get = function(options, callback) {
       stdout = process.stdout,
       fields = Object.keys(options);
 
+/**  @function */ 
   var done = function() {
     close_prompt();
     callback(null, answers);
   }
 
+/** @function */ 
   var close_prompt = function() {
     stdin.pause();
     if (!rl) return;
@@ -47,6 +72,7 @@ var get = exports.get = function(options, callback) {
     rl = null;
   }
 
+/**  @function */ 
   var get_default = function(key, partial_answers) {
     if (typeof options[key] == 'object')
       return typeof options[key].default == 'function' ? options[key].default(partial_answers) : options[key].default;
@@ -54,7 +80,13 @@ var get = exports.get = function(options, callback) {
       return options[key];
   }
 
+/**  @function */ 
   var guess_type = function(reply) {
+   /** 
+     * Attempts to guess the type
+     * @param {string} Key to access data, and answer from input
+     * @returns {boolean} returns true if the answer is yes, false otherwise
+     */
 
     if (reply.trim() == '')
       return;
@@ -68,7 +100,13 @@ var get = exports.get = function(options, callback) {
     return reply;
   }
 
+  /**@function */
   var validate = function(key, answer) {
+   /** 
+     * Validates the answer against the regex 
+     * @param key.
+     * @returns true or false.
+     */
 
     if (typeof answer == 'undefined')
       return options[key].allow_empty || typeof get_default(key) != 'undefined';
@@ -85,6 +123,7 @@ var get = exports.get = function(options, callback) {
 
   }
 
+  /**  @function */ 
   var show_error = function(key) {
     var str = options[key].error ? options[key].error : 'Invalid value.';
 
@@ -94,6 +133,7 @@ var get = exports.get = function(options, callback) {
     stdout.write("\033[31m" + str + "\033[0m" + "\n");
   }
 
+  /**  @function */ 
   var show_message = function(key) {
     var msg = '';
 
@@ -111,7 +151,7 @@ var get = exports.get = function(options, callback) {
 
     var buf = '',
         mask = '*';
-
+    
     var keypress_callback = function(c, key) {
 
       if (key && (key.name == 'enter' || key.name == 'return')) {
@@ -128,7 +168,7 @@ var get = exports.get = function(options, callback) {
         buf = buf.substr(0, buf.length-1);
         var masked = '';
         for (i = 0; i < buf.length; i++) { masked += mask; }
-        stdout.write('\r\033[2K' + prompt + masked);
+     //   stdout.write('\r\033[2K' + prompt + masked);
       } else {
         stdout.write(mask);
         buf += c;
@@ -138,7 +178,8 @@ var get = exports.get = function(options, callback) {
 
     stdin.on('keypress', keypress_callback);
   }
-
+  
+  /**  @function */ 
   var check_reply = function(index, curr_key, fallback, reply) {
     var answer = guess_type(reply);
     var return_answer = (typeof answer != 'undefined') ? answer : fallback;
@@ -148,7 +189,8 @@ var get = exports.get = function(options, callback) {
     else
       show_error(curr_key) || next_question(index); // repeats current
   }
-
+  
+  /**  @function */ 
   var dependencies_met = function(conds) {
     for (var key in conds) {
       var cond = conds[key];
@@ -167,6 +209,7 @@ var get = exports.get = function(options, callback) {
     return true;
   }
 
+  /**  @function */ 
   var next_question = function(index, prev_key, answer) {
     if (prev_key) answers[prev_key] = answer;
 
