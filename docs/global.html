@@ -101,7 +101,7 @@
 
     
 
-    <h4 class="name" id="confirm%3Cp%3EGetstheinterfaceforreadline%3C/p%3E"><span class="type-signature"></span>confirm<p>Gets the interface for readline</p><span class="signature">(message, a)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="confirm"><span class="type-signature"></span>confirm<span class="signature">(message, function)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
 
     
 
@@ -156,14 +156,14 @@
 
             
 
-            <td class="description last">from reply</td>
+            <td class="description last">A message for the user to answer</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>a</code></td>
+                <td class="name"><code>function</code></td>
             
 
             <td class="type">
@@ -179,7 +179,7 @@
 
             
 
-            <td class="description last">callback function</td>
+            <td class="description last">a callback function that checks the user's input</td>
         </tr>
 
     
@@ -220,7 +220,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line15">line 15</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line10">line 10</a>
     </li></ul></dd>
     
 
@@ -247,10 +247,22 @@
 
         
 <div class="param-desc">
-    readline
+    if "yes" then true otherwise false<h5>Description:</h5><p>Asks a user a question that is either yes or no</p>
 </div>
 
 
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">boolean</span>
+
+
+    </dd>
+</dl>
 
     
 
@@ -261,7 +273,7 @@
 
     
 
-    <h4 class="name" id="get%3Cp%3EGetstheinterfaceforreadline%3C/p%3E"><span class="type-signature"></span>get<p>Gets the interface for readline</p><span class="signature">(objectin)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="get"><span class="type-signature"></span>get<span class="signature">(questions, callback)</span><span class="type-signature"> &rarr; {object}</span></h4>
 
     
 
@@ -300,10 +312,15 @@
 
         <tr>
             
-                <td class="name"><code>objectin</code></td>
+                <td class="name"><code>questions</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
             
             </td>
 
@@ -311,7 +328,30 @@
 
             
 
-            <td class="description last">and ovjectout</td>
+            <td class="description last">a JSON object of questions for the user.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">a callback function once the user inputs an answer.</td>
         </tr>
 
     
@@ -352,7 +392,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line42">line 42</a>
+        <a href="index.js.html">index.js</a>, <a href="index.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -379,170 +419,22 @@
 
         
 <div class="param-desc">
-    readline
+    answers from questions.<h5>Description:</h5><p>Handles the input and output to and form the prompt on node and all of the validation and checks on input. </p>
 </div>
 
 
 
-    
-
-
-
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
         
-            
-
-    
-
-    <h4 class="name" id="get_interface%3Cp%3EStartsuptheinterfacefor"><span class="type-signature"></span>get_interface<p>Starts up the interface for<span class="signature">(objectin, objectout)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>objectin</code></td>
-            
-
-            <td class="type">
-            
-                
 <span class="param-type">object</span>
 
 
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>objectout</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="index.js.html">index.js</a>, <a href="index.js.html#line3">line 3</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
+    </dd>
 </dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    readline
-</div>
-
-
 
     
 
@@ -564,13 +456,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#confirm%253Cp%253EGetstheinterfaceforreadline%253C/p%253E">confirm<p>Gets the interface for readline</p></a></li><li><a href="global.html#get%253Cp%253EGetstheinterfaceforreadline%253C/p%253E">get<p>Gets the interface for readline</p></a></li><li><a href="global.html#get_interface%253Cp%253EStartsuptheinterfacefor">get_interface<p>Starts up the interface for</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#confirm">confirm</a></li><li><a href="global.html#get">get</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jan 19 2016 12:10:29 GMT-0800 (Pacific Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Jan 19 2016 19:35:38 GMT-0800 (Pacific Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
